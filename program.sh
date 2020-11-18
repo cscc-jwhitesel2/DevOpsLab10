@@ -14,4 +14,6 @@ do
 done
 
 echo "sum:" ${sum}
-echo ${sum} > ./value.txt 
+echo ${sum} > ./sumworkspace/value.txt
+#
+ls -ltr ./sumworkspace/value.txt 
