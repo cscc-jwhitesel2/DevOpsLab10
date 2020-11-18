@@ -4,9 +4,10 @@
 #testProgram.sh
 
 set -x
+ls ./sumworkspace
 #
 # read the value from the file
-read number < ./value.txt
+read number < ./sumworkspace/value.txt
 #echo "number: " ${number}
 #
 # set expected value
