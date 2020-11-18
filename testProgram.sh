@@ -6,7 +6,7 @@
 set -x
 #
 # read the value from the file
-read number < value.txt
+read number < ./value.txt
 #echo "number: " ${number}
 #
 # set expected value
