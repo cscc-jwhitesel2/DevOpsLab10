@@ -1,4 +1,3 @@
----
 resources:
   - name: resource-git-lab10
     type: git
@@ -7,43 +6,44 @@ resources:
 ##    webhook_token: ((git-webhook-token))
     source:
       uri: https://github.com/cscc-jwhitesel2/DevOpsLab10.git
-#     branch: master
-      branch: test 
-      username: --userid--
-      password: --password--
+      branch: master
+#      branch: test 
+      username: __your_id_here__
+      password: __your_passphase_here__
     
 jobs:
-  - name: ConcourseLab
+  - name: concourselab
     public: true
     plan:
       - get: resource-git-lab10
-        trigger: true
+#        trigger: true
       - task: sum-even-numbers 
         config:
+          platform: linux
           image_resource:
-            source: { repository: busybox }
-              tag: latest
+            source: { repository: centos }
+            tag: latest
             type: registry-image
-        inputs:
-          - name: resource-git-lab10
-        platform: linux
-        run:
-          path: resource-git-lab10/program.sh
-        outputs:
-          - name: number  
+          inputs:
+            - name: resource-git-lab10
+          run:
+            path: resource-git-lab10/program.sh
+            args: []
+          outputs:
+            - name: sumworkspace  
       - task: validate-sum
         config:
+          platform: linux
           image_resource:
-            source: { repository: busybox }
-              tag: latest
+            source: { repository: centos }
+            tag: latest
             type: registry-image
-        inputs:
-          - name: resource-git-lab10
-          - name: number 
-        platform: linux
-        run:
-          path: resource-git-lab10/testProgram.sh
-          args: []
-        params:
-          FORCE_FAILURE: 0
+          inputs:
+            - name: resource-git-lab10
+            - name: sumworkspace 
+          run:
+            path: resource-git-lab10/testProgram.sh
+            args: []
+          params:
+            FORCE_FAILURE: 0
 
