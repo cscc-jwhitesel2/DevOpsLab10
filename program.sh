@@ -14,4 +14,4 @@ do
 done
 
 echo "sum:" ${sum}
-echo ${sum} > ./value.txt 
+#echo ${sum} > ./value.txt 
