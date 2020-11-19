@@ -4,6 +4,12 @@
 #testProgram.sh
 
 set -x
+
+if [ $FORCE_FAILURE != 0 ]; then
+  exit 999
+fi
+
+
 ls ./sumworkspace
 #
 # read the value from the file
