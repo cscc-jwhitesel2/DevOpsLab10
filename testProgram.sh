@@ -9,7 +9,8 @@ if [ $FORCE_FAILURE != 0 ]; then
   exit 999
 fi
 
-
+env
+#
 ls ./sumworkspace
 #
 # read the value from the file
