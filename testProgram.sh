@@ -1,9 +1,32 @@
 #!/bin/sh
+##### originally !/bin/sh
 
 #testProgram.sh
-#Fill in the unit test for program.sh described in the lab assignment below
 
-#Check that the result matches the correct result
+set -x
 
-#Return a non-zero exit code if the test does not pass
-exit 1
+if [ $FORCE_FAILURE != 0 ]; then
+  exit 999
+fi
+
+
+ls ./sumworkspace
+#
+# read the value from the file
+read number < ./sumworkspace/value.txt
+#echo "number: " ${number}
+#
+# set expected value
+expected_value=999000
+#echo "expected_value: " ${expected_value}
+#
+# check the values and set the exit code 
+#
+if [ "${number}" == "${expected_value}" ]
+then
+  echo "....passed validation test...." 
+  exit 0
+else
+  echo "....failed validation test...." 
+  exit 1
+fi

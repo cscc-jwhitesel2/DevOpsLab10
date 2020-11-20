@@ -1,9 +1,49 @@
----
+resources:
+  - name: resource-git-lab10
+    type: git
+    icon: github
+##    check_every: 24h
+##    webhook_token: ((git-webhook-token))
+    source:
+      uri: https://github.com/cscc-jwhitesel2/DevOpsLab10.git
+      branch: master
+#      branch: test 
+      username: __your_id_here__
+      password: __your_passphase_here__
+    
 jobs:
-  - name: ConcourseLab
+  - name: concourselab
     public: true
     plan:
-      - task: make-a-file
-        #TODO: Fill in first task to run program.sh
-      - task: consume-the-file
-        #TODO: Fill in first task to run testProgram.sh and indicate success or failure with a message
+      - get: resource-git-lab10
+#        trigger: true
+      - task: sum-even-numbers 
+        config:
+          platform: linux
+          image_resource:
+            source: { repository: centos }
+            tag: latest
+            type: registry-image
+          inputs:
+            - name: resource-git-lab10
+          run:
+            path: resource-git-lab10/program.sh
+            args: []
+          outputs:
+            - name: sumworkspace  
+      - task: validate-sum
+        config:
+          platform: linux
+          image_resource:
+            source: { repository: centos }
+            tag: latest
+            type: registry-image
+          inputs:
+            - name: resource-git-lab10
+            - name: sumworkspace 
+          run:
+            path: resource-git-lab10/testProgram.sh
+            args: []
+          params:
+            FORCE_FAILURE: 0
+
