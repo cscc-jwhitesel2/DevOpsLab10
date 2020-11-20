@@ -17,3 +17,5 @@ echo "sum:" ${sum}
 echo ${sum} > ./sumworkspace/value.txt
 #
 ls -ltr ./sumworkspace/value.txt 
+
+export TOTAL=${sum}

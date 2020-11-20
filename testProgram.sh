@@ -14,7 +14,10 @@ ls ./sumworkspace
 #
 # read the value from the file
 read number < ./sumworkspace/value.txt
-#echo "number: " ${number}
+echo "number: " ${number}
+#
+number=${TOTAL}
+echo "number(TOTAL): " ${number}
 #
 # set expected value
 expected_value=999000
